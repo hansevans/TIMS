@@ -1,5 +1,4 @@
 export interface Device {
-
   id: string;
 
   name: string;
@@ -26,5 +25,4 @@ export interface Device {
   signal?: number;
 
   lastSeen?: string;
-
 }
