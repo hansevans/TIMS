@@ -1,15 +1,19 @@
 interface CardProps {
   title: string;
   value: string;
-  status: string;
+  status?: string;
+  color?: string;
 }
 
 export default function Card({
   title,
   value,
   status,
+  color,
 }: CardProps) {
   const getStatusColor = () => {
+    if (!status) return color || "text-cyan-400";
+
     switch (status.toLowerCase()) {
       case "healthy":
       case "all online":
@@ -24,7 +28,7 @@ export default function Card({
         return "text-red-400";
 
       default:
-        return "text-cyan-400";
+        return color || "text-cyan-400";
     }
   };
 
@@ -38,9 +42,11 @@ export default function Card({
         {value}
       </h2>
 
-      <p className={`mt-4 font-semibold ${getStatusColor()}`}>
-        ● {status}
-      </p>
+      {status && (
+        <p className={`mt-4 font-semibold ${getStatusColor()}`}>
+          ● {status}
+        </p>
+      )}
     </div>
   );
 }

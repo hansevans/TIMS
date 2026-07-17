@@ -1,15 +1,13 @@
-import Card from "../components/cards/Card";
-import NetworkChart from "../components/charts/NetworkChart";
-import DeviceStatus from "../components/dashboard/DeviceStatus";
+import SystemStatus from "../components/dashboard/SystemStatus";
+import DashboardCards from "../components/dashboard/DashboardCards";
+import RecentEvents from "../components/tables/RecentEvents";
 
 export default function Dashboard() {
   return (
     <div className="space-y-6">
-
-      {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-white">
-          Dashboard
+          TIMS Dashboard
         </h1>
 
         <p className="text-slate-400">
@@ -17,87 +15,33 @@ export default function Dashboard() {
         </p>
       </div>
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <SystemStatus />
 
-        <Card
-          title="Active Towers"
-          value="25"
-          status="All Online"
-        />
+      <DashboardCards />
 
-        <Card
-          title="Online Devices"
-          value="148"
-          status="Healthy"
-        />
-
-        <Card
-          title="Active Alarms"
-          value="3"
-          status="Attention"
-        />
-
-        <Card
-          title="Battery SOC"
-          value="92%"
-          status="Charging"
-        />
-
-      </div>
-
-      {/* Chart + Device Status */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="rounded-xl bg-slate-800 p-6 shadow-lg">
+          <h2 className="mb-4 text-xl font-bold text-white">
+            Network Traffic
+          </h2>
+
+          <p className="text-slate-400">
+            Line chart coming soon...
+          </p>
+        </div>
 
         <div className="rounded-xl bg-slate-800 p-6 shadow-lg">
           <h2 className="mb-4 text-xl font-bold text-white">
-            Network Performance
+            Power Status
           </h2>
 
-          <NetworkChart />
+          <p className="text-slate-400">
+            Power chart coming soon...
+          </p>
         </div>
-
-        <DeviceStatus />
-
       </div>
 
-      {/* Recent Alarms */}
-      <div className="rounded-xl bg-slate-800 p-6 shadow-lg">
-        <h2 className="mb-4 text-xl font-bold text-white">
-          Recent Alarms
-        </h2>
-
-        <table className="w-full text-left">
-          <thead>
-            <tr className="border-b border-slate-700 text-slate-400">
-              <th className="pb-3">Tower</th>
-              <th className="pb-3">Alarm</th>
-              <th className="pb-3">Severity</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr className="border-b border-slate-700">
-              <td className="py-3">Tower 01</td>
-              <td>Battery Voltage Low</td>
-              <td className="text-red-400">Critical</td>
-            </tr>
-
-            <tr className="border-b border-slate-700">
-              <td className="py-3">Tower 07</td>
-              <td>High Temperature</td>
-              <td className="text-yellow-400">Warning</td>
-            </tr>
-
-            <tr>
-              <td className="py-3">Tower 12</td>
-              <td>Router Offline</td>
-              <td className="text-red-400">Critical</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+      <RecentEvents />
     </div>
   );
 }
